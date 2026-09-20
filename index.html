@@ -1,0 +1,89 @@
+<div id="font-slots-panel" class="fs-panel">
+    <div class="inline-drawer">
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <b>🖋️ Font Slots</b>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+        </div>
+
+        <div class="inline-drawer-content">
+
+            <label class="checkbox_label fs-master">
+                <input type="checkbox" id="fs-enabled" checked>
+                <span>폰트 적용 켜기</span>
+            </label>
+
+            <label class="checkbox_label fs-master">
+                <input type="checkbox" id="fs-wrap-thoughts">
+                <span>'작은따옴표' 를 속마음으로 잡기</span>
+            </label>
+
+            <div class="fs-tabs">
+                <button class="fs-tab active" data-tab="slots">슬롯</button>
+                <button class="fs-tab" data-tab="add">폰트 추가</button>
+                <button class="fs-tab" data-tab="fonts">폰트 목록</button>
+            </div>
+
+            <!-- ── 슬롯 ─────────────────────────────────────────── -->
+            <div class="fs-tab-content active" id="fs-tab-slots">
+                <p class="fs-hint">
+                    슬롯 하나가 "어디에 어떤 폰트를" 한 줄을 맡아. 기본값은 본문과 상태창이
+                    서로 안 겹치게 잡혀 있어서 따로 놀아.
+                    범위가 겹칠 때는 아래쪽 슬롯이 이겨.
+                </p>
+                <div id="fs-slot-list"></div>
+                <button id="fs-add-slot" class="menu_button fs-wide">＋ 슬롯 추가</button>
+            </div>
+
+            <!-- ── 폰트 추가 ────────────────────────────────────── -->
+            <div class="fs-tab-content" id="fs-tab-add">
+
+                <div class="fs-section">
+                    <div class="fs-section-title">파일에서</div>
+                    <div class="fs-drop" id="fs-drop">
+                        <div class="fs-drop-glyph">Ag 한글</div>
+                        <div class="fs-drop-text" id="fs-drop-text"></div>
+                    </div>
+                    <input type="file" id="fs-file" accept=".ttf,.otf,.woff,.woff2" hidden>
+
+                    <input type="text" id="fs-file-name" class="text_pole" placeholder="표시할 이름">
+
+                    <div class="fs-preview" id="fs-file-preview" hidden>
+                        <div class="fs-preview-text" id="fs-file-preview-text">다람쥐 헌 쳇바퀴에 타고파 ABC 123</div>
+                    </div>
+
+                    <button id="fs-file-add" class="menu_button fs-wide">폰트 저장</button>
+                    <div class="fs-error" id="fs-file-error" hidden></div>
+                </div>
+
+                <div class="fs-section">
+                    <div class="fs-section-title">주소에서</div>
+                    <p class="fs-hint">
+                        눈누 · 폰트 아카이브 · 구글폰트 전부 여기에 붙여넣으면 돼.
+                        <code>@import</code>, <code>&lt;link&gt;</code>, <code>@font-face</code>, CSS 주소 다 인식해.
+                    </p>
+                    <textarea id="fs-web-css" class="text_pole textarea_compact" rows="4"
+                        placeholder="@import url('https://cdn.jsdelivr.net/gh/fonts-archive/...');"></textarea>
+
+                    <input type="text" id="fs-web-name" class="text_pole" placeholder="표시할 이름">
+
+                    <div class="fs-preview" id="fs-web-preview" hidden>
+                        <div class="fs-preview-text" id="fs-web-preview-text">다람쥐 헌 쳇바퀴에 타고파 ABC 123</div>
+                    </div>
+
+                    <button id="fs-web-add" class="menu_button fs-wide">폰트 저장</button>
+                    <div class="fs-error" id="fs-web-error" hidden></div>
+                </div>
+
+            </div>
+
+            <!-- ── 폰트 목록 ────────────────────────────────────── -->
+            <div class="fs-tab-content" id="fs-tab-fonts">
+                <div id="fs-font-list"></div>
+                <div class="fs-storage-note" id="fs-storage-note"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="fs-toast" class="fs-toast" hidden></div>

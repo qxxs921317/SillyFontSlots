@@ -1,0 +1,11 @@
+{
+    "display_name": "🖋️ Font Slots",
+    "loading_order": 100,
+    "version": "1.0.0",
+    "author": "Jinhee",
+    "homePage": "",
+    "js": "index.js",
+    "css": "style.css",
+    "default_open": false,
+    "generate_interceptors": false
+}

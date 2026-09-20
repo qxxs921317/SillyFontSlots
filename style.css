@@ -1,0 +1,511 @@
+/* Font Slots — ST 테마 변수를 그대로 쓰므로 사용자가 어떤 테마를 쓰든 섞인다. */
+
+.fs-panel {
+    --fs-line: var(--SmartThemeBorderColor, rgba(128, 128, 128, 0.35));
+    --fs-accent: var(--SmartThemeQuoteColor, #8fb8ff);
+    --fs-dim: color-mix(in srgb, var(--SmartThemeBodyColor, #ddd) 55%, transparent);
+    font-size: 0.95em;
+}
+
+.fs-panel .fs-master {
+    margin: 6px 0 10px;
+}
+
+/* ── 탭 ─────────────────────────────────────────────── */
+
+.fs-tabs {
+    display: flex;
+    gap: 2px;
+    border-bottom: 1px solid var(--fs-line);
+    margin-bottom: 10px;
+}
+
+.fs-tab {
+    flex: 1;
+    padding: 8px 4px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--fs-dim);
+    font-size: 0.92em;
+    cursor: pointer;
+}
+
+.fs-tab:hover { color: var(--SmartThemeBodyColor); }
+
+.fs-tab.active {
+    color: var(--fs-accent);
+    border-bottom-color: var(--fs-accent);
+}
+
+.fs-tab-content { display: none; }
+.fs-tab-content.active { display: block; }
+
+/* ── 공통 ───────────────────────────────────────────── */
+
+.fs-hint {
+    margin: 0 0 10px;
+    font-size: 0.84em;
+    color: var(--fs-dim);
+    line-height: 1.5;
+}
+
+.fs-hint code {
+    font-size: 0.95em;
+    padding: 1px 4px;
+    border-radius: 3px;
+    background: rgba(128, 128, 128, 0.18);
+}
+
+.fs-wide { width: 100%; justify-content: center; }
+
+.fs-field {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 8px;
+}
+
+.fs-field > span {
+    font-size: 0.8em;
+    color: var(--fs-dim);
+}
+
+.fs-custom-row {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+}
+
+.fs-custom-row .text_pole { flex: 1; min-width: 0; margin-bottom: 0; }
+.fs-custom-row .menu_button { flex-shrink: 0; font-size: 0.8em; }
+
+.fs-custom {
+    padding: 8px 9px 2px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    background: rgba(128, 128, 128, 0.09);
+}
+
+.fs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 8px;
+}
+
+.fs-span2 { grid-column: 1 / -1; }
+
+.fs-icon {
+    background: none;
+    border: none;
+    color: var(--fs-dim);
+    cursor: pointer;
+    padding: 2px 5px;
+    font-size: 0.9em;
+    line-height: 1;
+}
+
+.fs-icon:hover:not(:disabled) { color: var(--SmartThemeBodyColor); }
+.fs-icon:disabled { opacity: 0.25; cursor: default; }
+
+.fs-error {
+    margin-top: 6px;
+    padding: 7px 9px;
+    border-left: 3px solid #e06c6c;
+    background: rgba(224, 108, 108, 0.12);
+    border-radius: 0 4px 4px 0;
+    font-size: 0.84em;
+    white-space: pre-line;
+    line-height: 1.5;
+}
+
+.fs-empty {
+    padding: 24px 12px;
+    text-align: center;
+    color: var(--fs-dim);
+    font-size: 0.86em;
+    line-height: 1.7;
+}
+
+/* ── 슬롯 카드 ──────────────────────────────────────── */
+
+.fs-slot {
+    --fs-spine: var(--fs-accent);
+    border: 0.5px solid var(--fs-line);
+    border-left: 3px solid var(--fs-spine);
+    border-radius: 0;
+    margin-bottom: 8px;
+    background: rgba(128, 128, 128, 0.05);
+}
+
+.fs-slot-off {
+    opacity: 0.42;
+    border-left-color: var(--fs-line);
+}
+
+.fs-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 9px 8px 9px 11px;
+}
+
+.fs-order {
+    flex-shrink: 0;
+    width: 14px;
+    font-size: 0.72em;
+    color: var(--fs-dim);
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.fs-summary {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 0 0 4px;
+    background: none;
+    border: none;
+    text-align: left;
+    color: inherit;
+    cursor: pointer;
+}
+
+.fs-summary:focus-visible {
+    outline: 2px solid var(--fs-accent);
+    outline-offset: 2px;
+}
+
+.fs-summary-title { font-size: 0.95em; }
+
+.fs-summary-line,
+.fs-summary-scope {
+    font-size: 0.76em;
+    color: var(--fs-dim);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fs-summary-scope { opacity: 0.75; }
+
+.fs-body {
+    padding: 4px 11px 11px;
+    border-top: 0.5px solid var(--fs-line);
+    margin-top: 2px;
+}
+
+.fs-body-foot {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2px;
+    padding-top: 4px;
+    border-top: 0.5px solid var(--fs-line);
+}
+
+.fs-slot-del:hover:not(:disabled) { color: #e06c6c; }
+
+/* ── 폰트 추가 ──────────────────────────────────────── */
+/*
+ * 견본집 배치. 상자 대신 가로줄로 구역을 나누고, 색은 전부 ST 테마
+ * 변수에서 끌어오므로 밝은 테마가 기본이고 어두운 테마도 같이 따라간다.
+ */
+
+#fs-tab-add { font-size: 0.92em; }
+
+.fs-section {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--fs-line);
+}
+
+.fs-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.fs-section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.68em;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--fs-dim);
+    margin-bottom: 10px;
+}
+
+.fs-section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--fs-line);
+}
+
+/* 파일 고르는 자리 = 활자 견본 */
+.fs-drop {
+    border: none;
+    border-top: 1px solid var(--fs-line);
+    border-bottom: 1px solid var(--fs-line);
+    border-radius: 0;
+    padding: 12px 6px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 6px;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.fs-drop:hover, .fs-drop.fs-drag {
+    border-top-color: var(--fs-accent);
+    border-bottom-color: var(--fs-accent);
+    background: none;
+}
+
+.fs-drop-glyph {
+    font-size: 1.9em;
+    line-height: 1.15;
+    letter-spacing: 0.03em;
+}
+
+.fs-drop:hover .fs-drop-glyph { color: var(--fs-accent); }
+
+.fs-drop-text {
+    font-size: 0.72em;
+    color: var(--fs-dim);
+    margin-top: 5px;
+    word-break: break-all;
+}
+
+.fs-drop-text:empty { display: none; }
+
+/* 밑줄만 남긴 입력칸 */
+#fs-tab-add .text_pole {
+    width: 100%;
+    margin: 0 0 6px;
+    padding: 5px 2px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--fs-line);
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 0.92em;
+}
+
+#fs-tab-add .text_pole:focus {
+    border-bottom-color: var(--fs-accent);
+    outline: none;
+    box-shadow: none;
+}
+
+#fs-tab-add textarea.text_pole { resize: vertical; }
+
+.fs-preview {
+    border: none;
+    border-top: 1px solid var(--fs-line);
+    border-radius: 0;
+    padding: 9px 2px 0;
+    margin-bottom: 8px;
+}
+
+.fs-preview-text { font-size: 1.02em; line-height: 1.55; }
+
+/* 저장 버튼도 테두리 한 겹만 */
+#fs-tab-add .fs-wide {
+    padding: 7px 10px;
+    font-size: 0.74em;
+    letter-spacing: 0.16em;
+    border: 1px solid var(--fs-accent);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--fs-accent);
+}
+
+#fs-tab-add .fs-wide:hover:not(:disabled) {
+    background: var(--fs-accent);
+    color: var(--SmartThemeBlurTintColor, #fff);
+}
+
+/* ── 폰트 목록 ──────────────────────────────────────── */
+
+.fs-font {
+    border: 1px solid var(--fs-line);
+    border-radius: 8px;
+    padding: 9px 10px;
+    margin-bottom: 8px;
+}
+
+.fs-font-top {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 6px;
+}
+
+.fs-font-name { font-weight: 600; }
+
+.fs-font-badge {
+    font-size: 0.72em;
+    padding: 2px 7px;
+    border-radius: 10px;
+    border: 1px solid var(--fs-line);
+    color: var(--fs-dim);
+}
+
+.fs-font-sample {
+    font-size: 1.15em;
+    line-height: 1.6;
+    margin-bottom: 6px;
+    word-break: keep-all;
+}
+
+.fs-font-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.fs-font-used { font-size: 0.76em; color: var(--fs-dim); }
+.fs-font-del:hover { color: #e06c6c; }
+
+.fs-storage-note {
+    font-size: 0.76em;
+    color: var(--fs-dim);
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+/* ── 패밀리 선택 모달 ───────────────────────────────── */
+
+.fs-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 16px;
+}
+
+.fs-modal-box {
+    width: 100%;
+    max-width: 380px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 18px 16px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--SmartThemeBorderColor, rgba(128, 128, 128, 0.35));
+    background: var(--SmartThemeBlurTintColor, #22252b);
+    color: var(--SmartThemeBodyColor, #e4e4e4);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+}
+
+.fs-modal-title { font-weight: 700; font-size: 1.05em; }
+
+.fs-modal-sub {
+    font-size: 0.8em;
+    opacity: 0.6;
+    margin: 3px 0 12px;
+}
+
+.fs-modal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 12px;
+}
+
+.fs-modal-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    text-align: left;
+    border: 1px solid var(--SmartThemeBorderColor, rgba(128, 128, 128, 0.35));
+    border-radius: 8px;
+    background: rgba(128, 128, 128, 0.08);
+    color: inherit;
+    cursor: pointer;
+}
+
+.fs-modal-item:hover { border-color: var(--SmartThemeQuoteColor, #8fb8ff); }
+.fs-modal-item-name { font-size: 0.74em; opacity: 0.6; }
+.fs-modal-item-sample { font-size: 1.1em; line-height: 1.5; }
+
+/* ── 토스트 ─────────────────────────────────────────── */
+
+.fs-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 10001;
+    max-width: 86vw;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--SmartThemeBorderColor, rgba(128, 128, 128, 0.35));
+    background: var(--SmartThemeBlurTintColor, #22252b);
+    color: var(--SmartThemeBodyColor, #e4e4e4);
+    font-size: 0.86em;
+    line-height: 1.5;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.fs-toast-warn { border-left: 3px solid #e0a94a; }
+.fs-toast-info { border-left: 3px solid var(--SmartThemeQuoteColor, #8fb8ff); }
+.fs-toast-ok { border-left: 3px solid #5fbf7f; }
+
+/* ── 요소 찍기 모드 ─────────────────────────────────── */
+
+body.fs-picking #chat .mes_text * {
+    cursor: crosshair !important;
+}
+
+body.fs-picking #chat .mes_text *:hover {
+    outline: 2px solid var(--SmartThemeQuoteColor, #8fb8ff);
+    outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fs-tab, .fs-drop { transition: none; }
+}
+
+/* 속마음 표시 기본값 — 슬롯에서 폰트를 지정하면 그게 이김 */
+.mes_text .fs-thought {
+    font-style: inherit;
+}
+
+/* 글자 색 고르기 — 정사각 스와치로 고정 */
+.fs-slot .fs-color-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fs-slot input[type="color"] {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    padding: 0;
+    border: 1px solid var(--fs-line);
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* 크롬/사파리는 스와치 안쪽에 여백을 넣는다. 그걸 없애야 꽉 찬 사각형이 된다. */
+.fs-slot input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+.fs-slot input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 6px;
+}
+.fs-slot input[type="color"]::-moz-color-swatch {
+    border: none;
+    border-radius: 6px;
+}
+
+.fs-slot .fs-slot-color-off { flex: 0 0 auto; }
