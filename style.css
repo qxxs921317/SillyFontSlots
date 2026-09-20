@@ -533,20 +533,15 @@ body.fs-picking #chat .mes_text *:hover {
 }
 
 
-/* 좁은 화면에서는 아래에서 올라오는 시트로. 위로 밀려 잘릴 일이 없다. */
+/* 좁은 화면에서도 가운데. 높이가 모자라면 스크롤로 넘긴다. */
 @media (max-width: 600px) {
     .fs-modal {
-        align-items: flex-end;
-        padding: 0;
-        padding-top: max(24px, env(safe-area-inset-top, 0px));
+        padding-left: 12px;
+        padding-right: 12px;
     }
 
     .fs-modal-box {
         max-width: none;
         max-height: 100%;
-        margin: 0;
-        border-radius: 14px 14px 0 0;
-        border-bottom: none;
-        padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
     }
 }
