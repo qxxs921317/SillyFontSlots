@@ -509,3 +509,18 @@ body.fs-picking #chat .mes_text *:hover {
 }
 
 .fs-slot .fs-slot-color-off { flex: 0 0 auto; }
+
+/* 전역 색 제외 칸 */
+.fs-global-skip {
+    display: block;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--fs-line);
+}
+
+.fs-global-skip > span {
+    display: block;
+    font-size: 0.78em;
+    color: var(--fs-dim);
+    margin-bottom: 5px;
+}

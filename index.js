@@ -130,6 +130,7 @@ function defaultSettings() {
     return {
         enabled: true,
         wrapThoughts: false,   // '작은따옴표' 를 .fs-thought 로 감쌀지
+        colorExclude: '',      // 색만 건드리지 않을 곳 (전역). 다른 확장이 칠하는 영역용
         fonts: [],
         slots: [
             newSlot({ id: 'body', label: '본문', selector: '', exclude: 'pre, code' }),
@@ -482,10 +483,6 @@ function applyRules() {
             decls.push(`letter-spacing:${slot.letterSpacing}em !important`);
             undo.push('letter-spacing:normal !important');
         }
-        if (slot.color) {
-            decls.push(`color:${slot.color} !important`);
-            undo.push('color:revert !important');
-        }
 
         const hasParaGap = slot.paraGap !== null && slot.paraGap !== undefined;
         const style = slot.style || 'auto';
@@ -506,6 +503,17 @@ function applyRules() {
         // 아래 슬롯(더 높은 depth)은 여전히 이걸 덮어쓸 수 있다.
         if (reset.length && undo.length) {
             lines.push(`${reset.join(',')}{${undo.join(';')}}`);
+        }
+
+        // 색은 따로 낸다. 다른 확장이 자기 영역을 칠하는 경우가 있어서
+        // (번역 병기, 상태창 HTML 등) 전역 제외 목록을 여기에만 물린다.
+        if (slot.color) {
+            const skip = splitSelector(S().colorExclude)
+                .map(e => `:not(${e}):not(${e} *)`).join('');
+            lines.push(`${all.map(sel => sel + skip).join(',')}{color:${slot.color} !important}`);
+            if (reset.length) {
+                lines.push(`${reset.join(',')}{color:revert !important}`);
+            }
         }
 
         // 굵기: 'auto' 면 손대지 않는다 → 마크다운 **볼드** 가 살아있음
@@ -1389,6 +1397,16 @@ function bindShell() {
             save();
             if (thoughts.checked) { startThoughtObserver(); runThoughts(); }
             else { stopThoughtObserver(); toast('새로고침하면 따옴표 감싸기가 풀려.', 'info'); }
+        });
+    }
+
+    const colorSkip = document.getElementById('fs-color-exclude');
+    if (colorSkip) {
+        colorSkip.value = S().colorExclude || '';
+        colorSkip.addEventListener('input', () => {
+            S().colorExclude = colorSkip.value.trim();
+            applyRules();
+            save();
         });
     }
 
