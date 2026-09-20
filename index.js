@@ -1364,6 +1364,9 @@ function pickFamily(parsed) {
         overlay.querySelector('.fs-modal-cancel').addEventListener('click', () => finish(null));
         overlay.addEventListener('click', e => { if (e.target === overlay) finish(null); });
 
+        // 모바일: 키보드가 올라와 있으면 보이는 영역이 반으로 줄어
+        // 가운데 정렬이 화면 밖으로 밀린다. 먼저 키보드를 내린다.
+        document.activeElement?.blur?.();
         document.body.appendChild(overlay);
     });
 }
